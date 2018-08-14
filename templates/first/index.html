@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="AcinCode"/>
+    <title>First Web</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css">
+
+
+</head>
+<body>
+
+<h1> Base Template :D</h1>
+<div class="alert alert-primary" role="alert">
+    Bootstrap is working!
+</div>
+<h5 class="jquery-version"></h5>
+<h5 class="bootstrap-version"></h5>
+
+<script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+<script type="text/javascript">
+    if (typeof jQuery != 'undefined') {
+        $('.jquery-version').text('Jquery Version: ' + jQuery.fn.jquery);
+    }
+
+    $('.bootstrap-version').text('Bootstrap Version: ' + $.fn.tooltip.Constructor.VERSION);
+</script>
+</body>
+</html>
+
+
+<!-- TODO: terminar de configurar la estructura -->

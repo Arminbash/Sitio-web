@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'web.apps.first_app'
+    'web.apps.first_app',
+    # 'compressor',
 ]
 
 MIDDLEWARE = [
@@ -109,3 +110,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    'web/assets',
+]
+
