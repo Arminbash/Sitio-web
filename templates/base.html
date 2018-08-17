@@ -1,20 +1,43 @@
-{% load static %}
+{% load static compress %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="AcinCode"/>
-    <title>First Web</title>
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css">
+    <title>{% block title %}{% endblock %} | AcinCode</title>
 
+    {% compress css %}
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+
+        {% block css %} {% endblock %}
+
+    {% endcompress %}
 
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
+
+    {% block content %}{% endblock %}
 
 
+     {% compress js %}
 
-    <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+        <!-- Base Library -->
+        <script src="{% static 'js/jquery-3.3.1.js' %}"></script>
+
+        {# TODO: Optimize Plugins and Functions: http://support.semicolonweb.com/js-package-generator/ #}
+        <!-- External JavaScripts Libraries -->
+         <script src="{% static 'js/bootstrap.js' %}"></script>
+         <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+         <script type="text/javascript">
+             if (typeof jQuery != 'undefined') {
+                 $('.jquery-version').text('Jquery Version: ' + jQuery.fn.jquery);
+             }
+
+             $('.bootstrap-version').text('Bootstrap Version: ' + $.fn.tooltip.Constructor.VERSION);
+         </script>
+
+        {% block js %}{% endblock %}
+    {% endcompress %}
 </body>
 </html>

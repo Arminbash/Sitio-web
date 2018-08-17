@@ -1,7 +1,13 @@
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+import environ
+
+# Environ defaults
+root = environ.Path(start=__file__) - 2  # root folder
+env = environ.Env()
+
+# site Root
+BASE_DIR = root()
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,7 +33,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'web.apps.first_app',
-    # 'compressor',
+
+    'compressor',
+
 ]
 
 MIDDLEWARE = [
@@ -109,9 +117,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+
 
 STATICFILES_DIRS = [
     'web/assets',
 ]
+
+# Static File finders
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+    # Compress Finder
+    'compressor.finders.CompressorFinder',
+]
+
+# Media Files for user upload
+MEDIA_ROOT = root('media')
+MEDIA_URL = '/media/'
+
+# Static files (CSS, JavaScript, Images)
+STATIC_ROOT = root('static')
+STATIC_URL = '/static/'
 
